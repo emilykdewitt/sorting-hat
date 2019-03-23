@@ -9,6 +9,15 @@ const hogwartsHouses = ['Gryffindor', 'Hufflepuff', 'Slytherin', 'Ravenclaw'];
 const housedStudents = [];
 const expelledStudents = [];
 
+//This function will keep the student entry form hidden until the 'Get Started' Button is clicked
+const hideStudentEntry = () => {
+  document.getElementById('studentEntry').style.display = 'none';
+};
+
+const showForm = () => {
+  document.getElementById('studentEntry').style.display = 'block';
+};
+
 //This allows us to print to a selected div in our html
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
@@ -17,32 +26,23 @@ const printToDom = (divId, textToPrint) => {
 
 //This builds the domString of all the cards I want to print with student names
 const newStudentBuilder = () => {
-    //const studentName = document.getElementById("studentNameInput").value;
+    let studentName = document.getElementById("studentNameInput").value;
     const assignedHouse = hogwartsHouses[Math.floor(Math.random()*hogwartsHouses.length)];
-    const studentObject = {name: '', house: 0};
-    //studentObject.name = studentName;
+    const studentObject = {name: ``, house: ``};
+    studentObject.name = studentName;
     studentObject.house = assignedHouse;
     housedStudents.push(studentObject);
-    housedStudents[housedStudents.length + 1]
+    console.log(housedStudents);
 };
 
-//print function
-
-console.log(housedStudents);
-
-const EventListeners = () => {
-    //listen for buttonclick 'Get Started' that should load the form where user enters student name
+const eventListeners = () => {
+  document.getElementById('get-started').addEventListener('click', showForm);
+  document.getElementById('sortBtn').addEventListener('click', newStudentBuilder);
 };
 
-/*The form that should appear when 'Get Started' is clicked
-<form>
-  <div class="form-group">
-    <label for="inputName">Student Name</label>
-    <input type="name" class="form-control" id="studentNameInput" placeholder="Parvati Patel">
-  </div>
-  <button type="submit" class="btn btn-primary">Sort</button>
-</form>
-*/
+const init = () => {
+  eventListeners();
+  hideStudentEntry();
+};
 
-newStudentBuilder();
-domStringBuilder();
+init();
