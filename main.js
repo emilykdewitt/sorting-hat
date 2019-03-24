@@ -44,17 +44,14 @@ const newStudentBuilder = (e) => {
     document.getElementById('studentNameInput').value = "";
 };
 
-// //the function below finds the id of the object that has been clicked, 
-// const expel = () => {
-//   const clickedStudentId = event.target.id;
-//   const targetIndex = getElementById(clickedStudentId).indexOf;
-//   expelledStudents.push(housedStudents[targetIndex]);
-//   housedStudents.splice(targetIndex);
-// };
+const expel = () => {
+  //figure out ID or index of the studentObject that has been clicked
+  //use the index to add the studentObject to the expelledStudents array
+  //use the index to remove the studentObject from the housedStudents array (OR just hide it)
+  //reprint the domString of housedStudents to show the updated list
+  //print the expelledStudents array
+};
 
-
-
-arrayOfObjects.length = end;
 const eventListeners = () => {
   document.getElementById('get-started').addEventListener('click', showForm);
   document.getElementById('sortBtn').addEventListener('click', newStudentBuilder);
