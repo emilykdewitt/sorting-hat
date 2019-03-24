@@ -44,13 +44,27 @@ const newStudentBuilder = (e) => {
     document.getElementById('studentNameInput').value = "";
 };
 
-const expel = () => {
+//const expel = () => {
+  //var studentsDiv = document.getElementById('')
   //figure out ID or index of the studentObject that has been clicked
   //use the index to add the studentObject to the expelledStudents array
   //use the index to remove the studentObject from the housedStudents array (OR just hide it)
   //reprint the domString of housedStudents to show the updated list
   //print the expelledStudents array
 };
+
+// Just using the example below to try to make my own function
+// var g = document.getElementById('my_div');
+// for (var i = 0, len = g.children.length; i < len; i++)
+// {
+
+//     (function(index){
+//         g.children[i].onclick = function(){
+//               alert(index)  ;
+//         }    
+//     })(i);
+
+// }
 
 const eventListeners = () => {
   document.getElementById('get-started').addEventListener('click', showForm);
