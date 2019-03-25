@@ -36,44 +36,37 @@ var domString = `<div class="card-columns" id="card-column">`;
 
 //This builds the domString of all the cards I want to print with student names and then clears the input field
 
-const studentBuilder = () => {
-  let studentName = document.getElementById("studentNameInput").value; //gets the name the user has input
-  const assignedHouse = hogwartsHouses[Math.floor(Math.random()*hogwartsHouses.length)]; //assigns random Hogwarts house
-
-  //the section below creates key value pairs for a studentObject that is added to the housedStudents array
-  const studentObject = {name: ``, house: ``}; //creates a blank student object for values to feed into
-    studentObject.name = studentName; 
-    studentObject.house = assignedHouse;
-    studentObject.idNumber = Math.floor(100000 + Math.random() * 900000); //assigns random student ID number
-    housedStudents.push(studentObject); //adds object to housedStudents array
-
-  //the section below creates a domString with the student data to be printed to the 'card'
-    domString += `<div class="card text-center" id="${assignedHouse}">`; //adds the house they've been sorted into as the id
-    //the section below adds a house crest based on the house they've been sorted into
-    if (assignedHouse === 'Gryffindor') {
-      domString += 
-        `<div class="card-body gryffindor"><img class="crestimage" src="housecrests/gryffindor.png" alt="Gryffindor">`;
-    } else if (assignedHouse === 'Hufflepuff') {
-      domString += 
-        `<div class="card-body hufflepuff"><img class="crestimage" src="housecrests/hufflepuff.png" alt="Hufflepuff">`;
-    } else if (assignedHouse === 'Slytherin') {
-      domString += 
-        `<div class="card-body slytherin"><img class="crestimage" src="housecrests/slytherin.png" alt="Slytherin">`;
-    } else {
-      domString += 
-        `<div class="card-body ravenclaw"><img class="crestimage" src="housecrests/ravenclaw.png" alt="Ravenclaw">`;
-    };
-
-    //the section below adds the student name and an 'expel' button to the card and then closes
-    domString +=
-    `<h5 class="card-title">${studentObject.name}</h5>
-      <a id="expelBtn" class="btn btn-primary">Expel</a>
-    </div>
-    </div>`;
-  return domString;
+const studentObjectBuilder = () => {
+  let studentObject = {name: ``, house: ``, crest: ``};
+  studentObject.name = document.getElementById("studentNameInput").value; //gets the name the user has input
+  studentObject.house = hogwartsHouses[Math.floor(Math.random()*hogwartsHouses.length)]; //assigns random Hogwarts house
+  if (studentObject.house === 'Gryffindor') {
+    studentObject.crest = 'housecrests/gryffindor.png';
+  } else if (studentObject.house === 'Hufflepuff') {
+    studentObject.crest = 'housecrests/hufflepuff.png';
+  } else if (studentObject.house === 'Slytherin') {
+    studentObject.crest = 'housecrests/slytherin.png'
+  } else {
+    studentObject.crest = 'housecrests/ravenclaw.png'
+  };
+  housedStudents.push(studentObject); //adds object to housedStudents array
 };
 
-//this assesses the input and if it's empty, it returns a warning message, if it contains a name, it runs the card builder function, prints to DOM and then clears the input field
+const cardBuilder = (selectedArray) => {
+  selectedArray.forEach((student) => {
+    let domString = ``;
+    domString += `<div class="card text-center" id="${student.house}">`;
+    domString +=  `<div class="card-body ${student.house}">`
+    domString +=    `<img class="crestimage" src="${student.crest}">`;
+    domString +=    `<h5 class="card-title">${student.name}</h5>`
+    domString +=    `<a id="expelBtn" class="btn btn-primary">Expel</a>`
+    domString +=  `</div>`;
+    domString += `</div>`;
+    return domString;
+  })
+};
+
+//this assesses the input and runs the studentBuilder function. If the studentName is empty, it sends a blankFieldAlert, if it contains a name, it prints to DOM and then clears the input field
 const addStudent = (event) => {
   event.preventDefault();
   let studentName = document.getElementById("studentNameInput").value;
@@ -87,20 +80,20 @@ const addStudent = (event) => {
 };
 
 //this function will only show students in the house whose button is clicked
-// const houseFilter = (clickedButton) => {
-//   const buttonId = clickedButton.target.id;
-//   const selectedStudents = [];
-//   housedStudents.forEach((student) => {
-//     if (student.assignedHouse === buttonId) {
-//       selectedStudents.push(student);
-//     }
-//   });
-//   if (buttonId === 'all') {
-//     newStudentBuilder(housedStudents);
-//   } else {
-//     newStudentBuilder(selectedStudents);
-//   }
-// };
+const houseFilter = (clickedButton) => {
+  const buttonId = clickedButton.target.id;
+  const selectedStudents = [];
+  housedStudents.forEach((student) => {
+    if (student.house === buttonId) {
+      selectedStudents.push(student);
+    }
+  });
+  if (buttonId === 'all') {
+    printToDom('housedStudents', housedStudents);
+  } else {
+    newStudentBuilder(selectedStudents);
+  }
+};
 
 //const expel = () => {
   //var studentsDiv = document.getElementById('')
