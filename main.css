@@ -1,7 +1,65 @@
 body {
-    background-color: #e9ecef;
+    background-color: #fafafa;
 }
 
 .col-4 {
     margin: 5px;
+}
+
+.jumbotron {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    background-color: #141852;
+    color: whitesmoke;
+}
+
+#blankFieldAlert {
+    justify-content: center;
+    align-content: center;
+    margin-top: 1rem;
+}
+
+.crestimage {
+    height: 180px;
+    margin: 8px;
+}
+
+.alert {
+    width: 65%;
+}
+
+#studentEntry {
+    padding: 1rem 2rem;
+}
+
+#filterButtons {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0 2px 0 px;
+}
+
+#filterButtons > button {
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.gryffindor {
+    color:#9c1203;
+}
+
+.hufflepuff {
+    color: #e3a000;
+}
+
+.slytherin {
+    color: #033807;
+}
+
+.ravenclaw {
+    color: #00165e;
+}
+
+#expelBtn {
+    color: white;
 }
