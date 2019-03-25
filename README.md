@@ -9,7 +9,14 @@ This application will allow a user to enter the name of a Hogwarts student and r
 -  JavaScript
 -  Bootstrap
 
-## Pre-requisites
+## Getting Started
+$ git clone https://github.com/emilykdewitt/sorting-hat.git
 
+### Prerequisites
+1. Go to: https://www.npmjs.com/package/http-server
+2. Install "http-server"
+3. Navigate to the project folder in command line interface and type: http-server -p 8080
+4. This will show at: http://localhost:8080 in your internet browser
 
 ## Running
+Browse to sorting-hat directory and run http server

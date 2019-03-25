@@ -76,30 +76,31 @@ const studentBuilder = () => {
 //this assesses the input and if it's empty, it returns a warning message, if it contains a name, it runs the card builder function, prints to DOM and then clears the input field
 const addStudent = (event) => {
   event.preventDefault();
+  let studentName = document.getElementById("studentNameInput").value;
+  studentBuilder();
   if (studentName === ``) {
     blankFieldAlert();
   } else {
-    cardBuilder();
+    printToDom('housedStudents', domString);
+    document.getElementById('studentNameInput').value = "";
   }
-  printToDom('housedStudents', domString);
-  document.getElementById('studentNameInput').value = "";
 };
 
-//this funciton 
-const houseFilter = (clickedButton) => {
-  const buttonId = clickedButton.target.id;
-  const selectedStudents = [];
-  housedStudents.forEach((student) => {
-    if (student.assignedHouse === buttonId) {
-      selectedStudents.push(student);
-    }
-  });
-  if (buttonId === 'all') {
-    newStudentBuilder(housedStudents);
-  } else {
-    newStudentBuilder(selectedStudents);
-  }
-};
+//this function will only show students in the house whose button is clicked
+// const houseFilter = (clickedButton) => {
+//   const buttonId = clickedButton.target.id;
+//   const selectedStudents = [];
+//   housedStudents.forEach((student) => {
+//     if (student.assignedHouse === buttonId) {
+//       selectedStudents.push(student);
+//     }
+//   });
+//   if (buttonId === 'all') {
+//     newStudentBuilder(housedStudents);
+//   } else {
+//     newStudentBuilder(selectedStudents);
+//   }
+// };
 
 //const expel = () => {
   //var studentsDiv = document.getElementById('')
