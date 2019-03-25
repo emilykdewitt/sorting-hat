@@ -36,7 +36,7 @@ var domString = `<div class="card-columns" id="card-column">`;
 
 //This builds the domString of all the cards I want to print with student names and then clears the input field
 
-const studentObjectBuilder = () => {
+const studentObjectBuilder = (selectedArray) => {
   let studentObject = {name: ``, house: ``, crest: ``};
   studentObject.name = document.getElementById("studentNameInput").value; //gets the name the user has input
   studentObject.house = hogwartsHouses[Math.floor(Math.random()*hogwartsHouses.length)]; //assigns random Hogwarts house
@@ -45,11 +45,11 @@ const studentObjectBuilder = () => {
   } else if (studentObject.house === 'Hufflepuff') {
     studentObject.crest = 'housecrests/hufflepuff.png';
   } else if (studentObject.house === 'Slytherin') {
-    studentObject.crest = 'housecrests/slytherin.png'
+    studentObject.crest = 'housecrests/slytherin.png';
   } else {
-    studentObject.crest = 'housecrests/ravenclaw.png'
+    studentObject.crest = 'housecrests/ravenclaw.png';
   };
-  housedStudents.push(studentObject); //adds object to housedStudents array
+  selectedArray.push(studentObject); //adds object to array you want to push to
 };
 
 const cardBuilder = (selectedArray) => {
