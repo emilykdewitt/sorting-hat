@@ -2,10 +2,6 @@ body {
     background-color: #fafafa;
 }
 
-.col-4 {
-    margin: 5px;
-}
-
 .jumbotron {
     padding-bottom: 1rem;
     padding-top: 1rem;
@@ -19,7 +15,7 @@ body {
     margin-top: 1rem;
 }
 
-.crestimage {
+.crest-image {
     height: 180px;
     margin: 8px;
 }
@@ -30,6 +26,12 @@ body {
 
 #studentEntry {
     padding: 1rem 2rem;
+}
+
+.housedStudents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #filterButtons {
