@@ -2,6 +2,15 @@ const hogwartsHouses = ['Gryffindor', 'Hufflepuff', 'Slytherin', 'Ravenclaw'];
 const housedStudents = [];
 const expelledStudents = [];
 
+const studentInput = document.getElementById('studentInput');
+let studentCounter = 1;
+
+//This allows us to print to a selected div in our html
+const printToDom = (divId, textToPrint) => {
+  const selectedDiv = document.getElementById(divId);
+  selectedDiv.innerHTML = textToPrint;
+};
+
 //This function will keep the student entry form hidden until the 'Get Started' Button is clicked
 const hideStudentEntryForm = () => {
   document.getElementById('studentEntry').style.display = 'none';
@@ -10,12 +19,6 @@ const hideStudentEntryForm = () => {
 //This function causes the student entry form to appear when the 'Get Started' button is clicked
 const showStudentEntryForm = () => {
   document.getElementById('studentEntry').style.display = 'block';
-};
-
-//This allows us to print to a selected div in our html
-const printToDom = (divId, textToPrint) => {
-    const selectedDiv = document.getElementById(divId);
-    selectedDiv.innerHTML = textToPrint;
 };
 
 //the function below displays an alert message when the user clicks 'sort' but hasn't added a student
@@ -31,23 +34,73 @@ const blankFieldAlert = () => {
   printToDom('blankFieldAlert', domString);
 };
 
-//I declared the domString outside of the cardBuilder because I didn't want a new card-columns div to be created every time
-var domString = `<div class="card-columns" id="card-column">`;
+const addStudent = (e) => {
+  e.preventDefault();
+  const inputText = studentInput.value;
+  const newStudent = {
+    name: inputText,
+    house: hogwartsHouses[Math.floor(Math.random()*hogwartsHouses.length)],
+    id: `student${studentCounter}`,
+  };
+  if (newStudent.house === 'Gryffindor') {
+    newStudent.crest = 'house-crests/gryffindor.png';
+  } else if (studentObject.house === 'Hufflepuff') {
+    newStudent.crest = 'house-crests/hufflepuff.png';
+  } else if (studentObject.house === 'Slytherin') {
+    newStudent.crest = 'house-crests/slytherin.png';
+  } else {
+    newStudent.crest = 'house-crests/ravenclaw.png';
+  };
+  housedStudents.push(newStudent);
+  studentCounter++;
+  printToDom('housedStudents', inputText);
+  domStringBuilder(housedStudents);
+  addDeleteEvents();
+  studentInput.value = ``;
+}
+
+const expelFunction = (e) => {
+  const buttonId = e.target.id;
+  housedStudents.forEach((student, index) => {
+    if(ingredient.id === buttonId) {
+      housedStudents.splice(index, 1);
+    }
+  })
+  domStringBuilder(housedStudents);
+  addDeleteEvents();
+};
+
+const addDeleteEvents = () => {
+  const expelButtons = document.getElementsByClassName('expelBtn');
+  for (let i = 0; i < expelButtons.length; i++) {
+    expelButtons[i].addEventListener('click', expelFunction);
+  }
+};
 
 //This builds the domString of all the cards I want to print with student names and then clears the input field
+const domStringBuilder = (selectedArray) => {
+  let domString = ``;
+  selectedArray.forEach((student) => {
+    domString += `<div class="card text-center col-4">`;
+    domString +=  `<div class="card-body ${student.house}">`
+    domString +=    `<img class="crest-image" src="${student.crest}">`;
+    domString +=    `<h5 class="card-title">${student.name}</h5>`
+    domString +=    `<a id="expelBtn" class="btn btn-primary">Expel</a>`
+    domString +=  `</div>`;
+    domString += `</div>`;
+  })
 
-const studentObjectBuilder = (selectedArray) => {
   let studentObject = {name: ``, house: ``, crest: ``};
   studentObject.name = document.getElementById("studentNameInput").value; //gets the name the user has input
   studentObject.house = hogwartsHouses[Math.floor(Math.random()*hogwartsHouses.length)]; //assigns random Hogwarts house
   if (studentObject.house === 'Gryffindor') {
-    studentObject.crest = 'housecrests/gryffindor.png';
+    studentObject.crest = 'house-crests/gryffindor.png';
   } else if (studentObject.house === 'Hufflepuff') {
-    studentObject.crest = 'housecrests/hufflepuff.png';
+    studentObject.crest = 'house-crests/hufflepuff.png';
   } else if (studentObject.house === 'Slytherin') {
-    studentObject.crest = 'housecrests/slytherin.png';
+    studentObject.crest = 'house-crests/slytherin.png';
   } else {
-    studentObject.crest = 'housecrests/ravenclaw.png';
+    studentObject.crest = 'house-crests/ravenclaw.png';
   };
   selectedArray.push(studentObject); //adds object to array you want to push to
 };
@@ -94,28 +147,6 @@ const houseFilter = (clickedButton) => {
     newStudentBuilder(selectedStudents);
   }
 };
-
-//const expel = () => {
-  //var studentsDiv = document.getElementById('')
-  //figure out ID or index of the studentObject that has been clicked
-  //use the index to add the studentObject to the expelledStudents array
-  //use the index to remove the studentObject from the housedStudents array (OR just hide it)
-  //reprint the domString of housedStudents to show the updated list
-  //print the expelledStudents array
-//};
-
-// Just using the example below to try to make my own function
-// var g = document.getElementById('my_div');
-// for (var i = 0, len = g.children.length; i < len; i++)
-// {
-
-//     (function(index){
-//         g.children[i].onclick = function(){
-//               alert(index)  ;
-//         }    
-//     })(i);
-
-// }
 
 const eventListeners = () => {
   document.getElementById('get-started').addEventListener('click', showStudentEntryForm);
