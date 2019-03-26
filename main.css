@@ -1,5 +1,8 @@
 body {
-    background-color: #fafafa;
+    background-image: url("./hogwarts.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .jumbotron {
@@ -13,6 +16,11 @@ body {
     justify-content: center;
     align-content: center;
     margin-top: 1rem;
+}
+
+#instructions {
+    color: white;
+    /* background-color: rgb(2, 2, 22); */
 }
 
 .crest-image {

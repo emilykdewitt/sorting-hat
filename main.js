@@ -54,8 +54,10 @@ const addStudent = (e) => {
       newStudent.crest = 'house-crests/hufflepuff.png';
     } else if (newStudent.house === 'Slytherin') {
       newStudent.crest = 'house-crests/slytherin.png';
-    } else {
+    } else if (newStudent.house === 'Ravenclaw') {
       newStudent.crest = 'house-crests/ravenclaw.png';
+    } else {
+      newStudent.crest = 'house-crests/darkmark.png';
     };
     housedStudents.push(newStudent);
     studentCounter++;
@@ -71,8 +73,9 @@ const expelFunction = (e) => {
   housedStudents.forEach((student, index) => {
     if(student.id === buttonId) {
       //expelledStudents.push(student);
-      housedStudents.splice(index, 1);
-    }
+      //housedStudents.splice(index, 1);
+      student.house = `VoldArmy`;
+    };
   })
   domStringBuilder(housedStudents);
   //domStringBuilder(expelledStudents, `expelledStudents`);
@@ -126,6 +129,7 @@ const eventListeners = () => {
   document.getElementById('Slytherin').addEventListener('click', houseFilter);
   document.getElementById('Ravenclaw').addEventListener('click', houseFilter);
   document.getElementById('All').addEventListener('click', houseFilter);
+  document.getElementById('VoldArmy').addEventListener('click', houseFilter);
 };
 
 const init = () => {
