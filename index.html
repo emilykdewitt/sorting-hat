@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="jumbotron">
-            <h1 class="display-4">Sorting Hat</h1>
-            <p class="lead">Welcome to Hogwarts! The famous Sorting Hat is one of the cleverest enchanted objects most witches and wizards will ever meet. Enter the names of your favorite witches, wizards, or muggles below to sort them into the Hogwarts house where they belong.</p>
+            <h1 class="display-4">Welcome to Hogwarts!</h1>
+            <p class="lead">The famous Sorting Hat is one of the cleverest enchanted objects most witches and wizards will ever meet. Enter the names of your favorite witches, wizards, or muggles below to sort them into the Hogwarts house where they belong.</p>
             <p class="lead">If a student chooses to practice dark magic, click ‘expel’ to expel them from Hogwarts and add them to Voldemort’s army.</p>
             <hr class="my-4">
             <p class="lead">Click Get Started to summon the magic of the Sorting Hat and begin sorting students.</p>
@@ -23,7 +23,7 @@
     <div id="studentEntry">
         <form>
             <div class="form-group">
-              <label for="inputName">Enter the name of the student to be sorted and then click ‘sort’ to sort them into the appropriate Hogwarts house.</label>
+              <label id="instructions" for="inputName">Enter the name of the student to be sorted and then click ‘sort’ to sort them into the appropriate Hogwarts house.</label>
               <input type="name" class="form-control" id="studentInput" placeholder="Parvati Patel">
             </div>
               <button id="sortBtn" type="submit" class="btn-lg btn-primary">Sort</button>
@@ -34,6 +34,7 @@
             <button id="Hufflepuff">Hufflepuff</button>
             <button id="Slytherin">Slytherin</button>
             <button id="Ravenclaw">Ravenclaw</button>
+            <button id="VoldArmy">Voldemort's Army</button>
             <button id="All">All</button>
         </div>
     </div>
