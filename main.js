@@ -54,15 +54,13 @@ const addStudent = (e) => {
       newStudent.crest = 'house-crests/hufflepuff.png';
     } else if (newStudent.house === 'Slytherin') {
       newStudent.crest = 'house-crests/slytherin.png';
-    } else if (newStudent.house === 'Ravenclaw') {
-      newStudent.crest = 'house-crests/ravenclaw.png';
     } else {
-      newStudent.crest = 'house-crests/darkmark.png';
+      newStudent.crest = 'house-crests/ravenclaw.png';
     };
     housedStudents.push(newStudent);
     studentCounter++;
     printToDom('housedStudents', inputText);
-    domStringBuilder(housedStudents);
+    domStringBuilder(housedStudents, 'housedStudents');
     addDeleteEvents();
     studentInput.value = ``;
   };
@@ -72,15 +70,17 @@ const expelFunction = (e) => {
   const buttonId = e.target.id;
   housedStudents.forEach((student, index) => {
     if(student.id === buttonId) {
-      //expelledStudents.push(student);
-      //housedStudents.splice(index, 1);
+      student.crest = 'house-crests/darkmark.png';
+      expelledStudents.push(student);
+      housedStudents.splice(index, 1);
       student.house = `VoldArmy`;
     };
-  })
-  domStringBuilder(housedStudents);
-  //domStringBuilder(expelledStudents, `expelledStudents`);
+  });
+  domStringBuilder(housedStudents, 'housedStudents');
+  domStringBuilder(expelledStudents, 'expelledStudents');
   addDeleteEvents();
 };
+
 
 const addDeleteEvents = () => {
   const expelButtons = document.getElementsByClassName('expelBtn');
@@ -90,7 +90,7 @@ const addDeleteEvents = () => {
 };
 
 //This builds the domString of all the cards I want to print with student names and then clears the input field
-const domStringBuilder = (selectedArray/*, divId*/) => {
+const domStringBuilder = (selectedArray, divId) => {
   let domString = ``;
   selectedArray.forEach((student) => {
     domString += `<div class="card text-center col-4">`;
@@ -102,7 +102,7 @@ const domStringBuilder = (selectedArray/*, divId*/) => {
     domString += `</div>`;
   });
 
-  printToDom(`housedStudents`, domString); //can I replace 'housedStudents' with divId?
+  printToDom(divId, domString); //can I replace 'housedStudents' with divId?
 };
 
 //this function will only show students in the house whose button is clicked
