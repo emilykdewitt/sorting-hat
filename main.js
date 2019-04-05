@@ -93,7 +93,7 @@ const addDeleteEvents = () => {
 const domStringBuilder = (selectedArray, divId) => {
   let domString = ``;
   selectedArray.forEach((student) => {
-    domString += `<div class="card text-center col-4">`;
+    domString += `<div class="card text-center col-3 m-1">`;
     domString +=   `<div class="card-body ${student.house}">`
     domString +=     `<img class="crest-image" src="${student.crest}">`;
     domString +=     `<h5 class="card-title">${student.name}</h5>`
@@ -115,9 +115,11 @@ const houseFilter = (e) => {
     }
   });
   if (buttonId === 'All') {
-    domStringBuilder(housedStudents);
+    domStringBuilder(housedStudents, 'housedStudents');
+  } else if (buttonId === 'VoldArmy') {
+    domStringBuilder(expelledStudents, 'expelledStudents')
   } else {
-    domStringBuilder(selectedStudents);
+    domStringBuilder(selectedStudents, 'housedStudents');
   }
 };
 
@@ -129,7 +131,6 @@ const eventListeners = () => {
   document.getElementById('Slytherin').addEventListener('click', houseFilter);
   document.getElementById('Ravenclaw').addEventListener('click', houseFilter);
   document.getElementById('All').addEventListener('click', houseFilter);
-  document.getElementById('VoldArmy').addEventListener('click', houseFilter);
 };
 
 const init = () => {
