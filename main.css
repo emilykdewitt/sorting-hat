@@ -18,9 +18,17 @@ body {
     margin-top: 1rem;
 }
 
+form {
+    background-color: rgba(24, 18, 97, 0.4);
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+}
+
 #instructions {
     color: white;
-    /* background-color: rgb(2, 2, 22); */
+    /* background-color: rgba(49, 49, 59, .5);
+    margin: 5px; */
 }
 
 .crest-image {
@@ -36,10 +44,30 @@ body {
     padding: 1rem 2rem;
 }
 
-.housedStudents {
+.housedStudents, .expelledStudents {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    background-color: #141852;
+    border-radius: 10px;
+}
+
+.card-title {
+    color: white;
+}
+
+h2 {
+    color: white;
+    margin-top: 15px;
+}
+
+hr {
+    color: whitesmoke;
+    height: 2px;
 }
 
 #filterButtons {
