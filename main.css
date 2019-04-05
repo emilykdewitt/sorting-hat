@@ -36,10 +36,21 @@ body {
     padding: 1rem 2rem;
 }
 
-.housedStudents {
+.housedStudents, .expelledStudents {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.card {
+    background-color: #141852;
+    border-radius: 10px;
+    width: 28%;
+}
+
+h2 {
+    color: white;
+    margin-top: 15px;
 }
 
 #filterButtons {
